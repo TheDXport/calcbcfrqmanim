@@ -3,7 +3,7 @@ from manim import *
 
 class Solution(Scene):
     def construct(self):
-        title = Text("AP Calculus AB FRQ 2014 #1").shift(UP)
+        title = Text("AP Calculus BC FRQ 2014 #1").shift(UP)
         self.play(Write(title))
         underline = Underline(title, color=WHITE, buff=0.5).shift(UP * 0.35)
         xin = Text("presented and coded by xinathan :D").scale(0.6)
@@ -40,11 +40,11 @@ class Solution(Scene):
         slope_formula = MathTex(r"\frac{y_2 - y_1}{x_2 - x_1}").shift(DOWN * 0.2)
         self.play(Write(slope_formula))
         self.play(slope_formula.animate.shift(LEFT * 1.7), run_time=3.5)
-        equal_sign = MathTex('=').shift(LEFT * 0.4 + DOWN * 0.2)
+        equal_sign = MathTex('=').shift(LEFT * 0.4 + DOWN * 0.14)
         self.wait(0.8)
         self.play(Write(equal_sign))
         
-        subbed_slope_formula = MathTex(r"\frac{A(30) - A(0)}{30 - 0}").shift(RIGHT * 1.3 + DOWN * 0.2).scale(0.9)
+        subbed_slope_formula = MathTex(r"\frac{A(30) - A(0)}{30 - 0}").shift(RIGHT * 1.3 + DOWN * 0.12).scale(0.9)
         self.play(Write(subbed_slope_formula))
 
         self.wait(0.9)
@@ -55,5 +55,29 @@ class Solution(Scene):
         self.play(FadeOut(slope_formula))
         
         
-        self.play(subbed_slope_formula.animate.move_to(target_position + LEFT * 0.5))
+        self.play(subbed_slope_formula.animate.move_to(target_position + LEFT * 3.3), equal_sign.animate.move_to(target_position + LEFT * 1.6))
         
+        fullySubbed_slope_formula = MathTex(r"\frac{6.687(0.931)^{30} - 6.687(0.931)^0}{30 - 0}").move_to(equal_sign.get_center() + RIGHT * 3.4).scale(0.9)
+        self.play(Write(fullySubbed_slope_formula))
+        
+        self.wait(0.8)
+        
+        target_position = subbed_slope_formula.get_center()
+        self.play(FadeOut(equal_sign, subbed_slope_formula), fullySubbed_slope_formula.animate.move_to(target_position + RIGHT * 1.7))
+        
+        steps = MathTex(r"\frac{6.687(0.931)^{30} - 6.687(1)}{30}").move_to(equal_sign.get_center() + RIGHT * 3.4).scale(0.9).move_to(fullySubbed_slope_formula.get_center() + LEFT * 0.6)
+        self.play(Transform(fullySubbed_slope_formula, steps))
+        steps = MathTex(r"\frac{0.782928 - 6.687}{30}").move_to(equal_sign.get_center() + RIGHT * 3.4).scale(0.9).move_to(fullySubbed_slope_formula.get_center() + LEFT * 0.6)
+        self.play(Transform(fullySubbed_slope_formula, steps))
+        steps = MathTex(r"\frac{-5.9040721306221}{30}").move_to(equal_sign.get_center() + RIGHT * 3.4).scale(0.9).move_to(fullySubbed_slope_formula.get_center())
+        self.play(Transform(fullySubbed_slope_formula, steps))
+        steps = MathTex('-0.196802').move_to(equal_sign.get_center() + RIGHT * 3.4).scale(0.9).move_to(fullySubbed_slope_formula.get_center())
+        self.play(Transform(fullySubbed_slope_formula, steps))
+        
+        self.wait(2)
+        
+        units = MathTex(r"\frac{pounds}{day}").move_to(fullySubbed_slope_formula.get_center() + RIGHT * 2.03).scale(0.9)
+        self.play(Write(units))
+
+        answer_circle = Circle(color=YELLOW).surround(steps)
+        self.play(Create(answer_circle))
