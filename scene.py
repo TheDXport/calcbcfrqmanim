@@ -78,6 +78,69 @@ class Solution(Scene):
         
         units = MathTex(r"\frac{pounds}{day}").move_to(fullySubbed_slope_formula.get_center() + RIGHT * 2.03).scale(0.9)
         self.play(Write(units))
-
-        answer_circle = Circle(color=YELLOW).surround(steps)
+        answer_combined = VGroup(fullySubbed_slope_formula, units)
+        answer_circle = Ellipse(color=YELLOW).surround(answer_combined)
         self.play(Create(answer_circle))
+        
+        self.wait(1) 
+        
+        self.play(FadeOut(questionbackgroundp1, questionbackgroundp2, questionbackgroundp3, questionbackgroundp4, partaquestion, answer_circle, answer_combined, equation))
+        
+        self.wait(2)
+        # Visualize the rate of change as compared to the graph
+        partbquestionp1 = Text("b) Find the value of A'(15). Using correct units, interpret the meaning of the value in the context").shift(UP * 3 + LEFT * 0.2).scale(0.5)
+        partbquestionp2 = Text("of the problem.").shift(UP * 2.47 + LEFT * 5.27).scale(0.5)
+        
+        self.play(Write(partbquestionp1))
+        self.play(Write(partbquestionp2))
+
+        axes = Axes(
+                x_range=[-2, 50, 1],
+                y_range=[0, 9, 0.3],
+                axis_config={"color": BLUE},
+                x_axis_config={"include_tip": True}, 
+                y_axis_config={"include_tip": True},
+                 
+            ).scale(0.7)
+
+        self.wait(2)
+        graph = axes.plot(lambda t: 6.687 * (0.931)**t, color=GREEN_B)
+        
+        graph_label = MathTex('f(t) = 6.687 \cdot (0.931)^t', color=GREEN_B).scale(0.7)
+
+        # Determine a point on the graph to position the label above
+        label_coord = axes.i2gp(5, graph)  # Get the graph point at x = 5
+        graph_label.next_to(label_coord, RIGHT * 3)
+        self.play(Create(axes))
+        self.play(Create(graph))
+        self.play(Write(graph_label, run_time=0.9))
+
+        self.wait(2)
+        
+        derivative = lambda t: np.log(0.931) * 6.687 * (0.931)**t
+        
+        # Get the slope of the tangent line at x = 15
+        slope = derivative(15)
+
+        # Get the point on the graph at x = 15
+        point_on_curve = axes.i2gp(15, graph)
+
+        # Get a small line element at x = 15 that represents the tangent
+        tangent_line = Line(
+            start=point_on_curve + LEFT, 
+            end=point_on_curve + RIGHT,
+            color=RED
+        ).scale(0.8)  # Adjust the length of the tangent line as needed
+
+        # Rotate the tangent line according to the slope
+        tangent_line.rotate(np.arctan(slope))
+
+        # Display the tangent line
+        self.play(Create(tangent_line))
+
+        self.wait(2)
+        
+        self.play(FadeOut(axes, tangent_line, graph_label, graph))
+
+        
+            
