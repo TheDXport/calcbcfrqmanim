@@ -130,7 +130,7 @@ class Solution(Scene):
             start=point_on_curve + LEFT, 
             end=point_on_curve + RIGHT,
             color=RED
-        ).scale(0.8)  # Adjust the length of the tangent line as needed
+        ).scale(0.2)  # Adjust the length of the tangent line as needed
 
         # Rotate the tangent line according to the slope
         tangent_line.rotate(np.arctan(slope))
@@ -141,6 +141,21 @@ class Solution(Scene):
         self.wait(2)
         
         self.play(FadeOut(axes, tangent_line, graph_label, graph))
+        derivative_function = MathTex('6.687(0.931)^t')
+        deriv = MathTex(r'\frac{d}{dt}').move_to(derivative_function.get_center() + LEFT * 1.8)
+        combined = VGroup(deriv, derivative_function)
+        self.play(Write(combined))
+        step = MathTex(r"6.687(e^{ln(0.931)})^t")
+        self.play(Transform(combined, step))
+        step = MathTex(r"6.687(e^{ln(0.931)t})^1")
+        self.play(Transform(combined, step))
+        step = MathTex(r"6.687(e^{ln(0.931)t}) \cdot ln(0.931)")
+        self.play(Transform(combined, step))
+        function = MathTex(r"A'(t) =").move_to(combined.get_center() + LEFT * 4)
 
-        
+        self.play(combined.animate.shift(RIGHT * 1.3), Write(function))
+        self.play(Write(function))
+
+
+
             
