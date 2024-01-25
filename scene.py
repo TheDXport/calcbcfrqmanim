@@ -95,11 +95,21 @@ class Solution(Scene):
         self.play(Write(partbquestionp2))
 
         axes = Axes(
-                x_range=[-2, 50, 1],
-                y_range=[0, 9, 0.3],
+                x_range=[0, 50, 1],
+                y_range=[0, 9, 1],
                 axis_config={"color": BLUE},
-                x_axis_config={"include_tip": True}, 
-                y_axis_config={"include_tip": True},
+                x_axis_config={
+                "include_tip": True,  # Show the arrow tip
+                "numbers_to_include": np.arange(0, 50, 5),  # Numbers to include
+                "font_size": 30,  # Font size for the numbers
+            },
+            y_axis_config={
+                "include_tip": True,  # Show the arrow tip
+                "numbers_to_include": np.arange(0, 9, 2),  # Numbers to include
+                "font_size": 30,  # Font size for the numbers
+            }, 
+            tips=True
+
                  
             ).scale(0.7)
 
@@ -117,30 +127,39 @@ class Solution(Scene):
 
         self.wait(2)
         
-        derivative = lambda t: np.log(0.931) * 6.687 * (0.931)**t
         
-        # Get the slope of the tangent line at x = 15
-        slope = derivative(15)
 
-        # Get the point on the graph at x = 15
-        point_on_curve = axes.i2gp(15, graph)
+         # Calculate the derivative at t = 15
+        t_value = 15
+        slope = 6.687 * np.log(0.931) * (0.931)**t_value
+        f_t = 6.687 * (0.931)**t_value
 
-        # Get a small line element at x = 15 that represents the tangent
-        tangent_line = Line(
-            start=point_on_curve + LEFT, 
-            end=point_on_curve + RIGHT,
-            color=RED
-        ).scale(0.2)  # Adjust the length of the tangent line as needed
+        tangent_start = t_value - 1  # Adjust if you want a longer line
+        tangent_end = t_value + 1    # Adjust if you want a longer line
 
-        # Rotate the tangent line according to the slope
-        tangent_line.rotate(np.arctan(slope))
 
-        # Display the tangent line
+        start_point = axes.c2p(tangent_start, slope * (tangent_start - t_value) + f_t)
+        end_point = axes.c2p(tangent_end, slope * (tangent_end - t_value) + f_t)
+
+        
+        tangent_line = Line(start_point, end_point, color=RED).scale(10)
+        point_on_graph = axes.c2p(t_value, f_t)
+        dot = Dot(point_on_graph, color=WHITE, radius=0.06)  # Adjust the radius as needed
+
+        start_point = axes.c2p(t_value, 0)  # Start from the x-axis
+        end_point = point_on_graph          # End at the point of tangency on the graph
+        dotted_line = DashedLine(start_point, end_point, dashed_ratio=0.6, color=WHITE)
+
+        # Animate the dotted line approaching the point of tangency
+        self.play(Create(dotted_line))
+       
+        self.play(FadeIn(dot))
         self.play(Create(tangent_line))
 
         self.wait(2)
         
-        self.play(FadeOut(axes, tangent_line, graph_label, graph))
+        self.play(FadeOut(tangent_line, dot))
+        self.play(FadeOut(axes, graph_label, graph))
         derivative_function = MathTex('6.687(0.931)^t')
         deriv = MathTex(r'\frac{d}{dt}').move_to(derivative_function.get_center() + LEFT * 1.8)
         combined = VGroup(deriv, derivative_function)
