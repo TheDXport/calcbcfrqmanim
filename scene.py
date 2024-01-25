@@ -158,7 +158,7 @@ class Solution(Scene):
 
         self.wait(2)
         
-        self.play(FadeOut(tangent_line, dot))
+        self.play(FadeOut(tangent_line, dot, dotted_line))
         self.play(FadeOut(axes, graph_label, graph))
         derivative_function = MathTex('6.687(0.931)^t')
         deriv = MathTex(r'\frac{d}{dt}').move_to(derivative_function.get_center() + LEFT * 1.8)
@@ -174,6 +174,23 @@ class Solution(Scene):
         self.play(combined.animate.shift(RIGHT * 1.3))
         function = MathTex(r"A'(t) =").move_to(combined.get_center() + LEFT * 3.9)
         self.play(Write(function, run_time=0.6))
+        self.play(Transform(function, MathTex(r"A'(15) =").move_to(combined.get_center() + LEFT * 4.06)))
+        step = MathTex(r"6.687(e^{ln(0.931)15}) \cdot ln(0.931)").move_to(function.get_center() + RIGHT * 4.2)
+        self.play(Transform(combined,step))
+        step = MathTex(r"6.687(e^{(-0.0714)15}) \cdot (-0.0714)").move_to(function.get_center() + RIGHT * 4.36)
+        self.play(Transform(combined,step))
+        step = MathTex(r"6.687(0.931^{15}) \cdot (-0.0714)").move_to(function.get_center() + RIGHT * 4.6)
+        self.play(Transform(combined,step), function.animate.shift(RIGHT * 0.7))
+        step = MathTex(r"2.2881 \cdot (-0.0714)").move_to(function.get_center() + RIGHT * 3.5)
+        self.play(Transform(combined,step), function.animate.shift(RIGHT * 0.5))
+        step = MathTex(r"-0.1635").move_to(function.get_center() + RIGHT * 2.6)
+        self.play(Transform(combined,step), function.animate.shift(RIGHT * 0.56))
+
+
+
+
+
+
 
 
 
