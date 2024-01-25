@@ -151,10 +151,10 @@ class Solution(Scene):
         self.play(Transform(combined, step))
         step = MathTex(r"6.687(e^{ln(0.931)t}) \cdot ln(0.931)")
         self.play(Transform(combined, step))
-        function = MathTex(r"A'(t) =").move_to(combined.get_center() + LEFT * 4)
 
-        self.play(combined.animate.shift(RIGHT * 1.3), Write(function))
-        self.play(Write(function))
+        self.play(combined.animate.shift(RIGHT * 1.3))
+        function = MathTex(r"A'(t) =").move_to(combined.get_center() + LEFT * 3.9)
+        self.play(Write(function, run_time=0.6))
 
 
 
