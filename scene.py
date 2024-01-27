@@ -185,7 +185,9 @@ class Solution(Scene):
         self.play(Transform(combined,step), function.animate.shift(RIGHT * 0.5))
         step = MathTex(r"-0.1635").move_to(function.get_center() + RIGHT * 2.6)
         self.play(Transform(combined,step), function.animate.shift(RIGHT * 0.56))
-
+        combined = VGroup(function, combined)
+        self.play(combined.animate.shift(LEFT * 1.2))
+        units = MathTex()
 
 
 
