@@ -313,5 +313,19 @@ class Solution(Scene):
           self.play(Write(recallText), Write(recallTextp2))
           self.wait(2)
           self.play(FadeOut(recallText, recallTextp2))
-
+          step = MathTex(r"\frac{1}{30}\,\frac{6.687}{ln(0.931)}(e^{(ln(0.931))30})-1").scale(0.7).next_to(equalSign, RIGHT)
+          self.play(Write(step))
+          self.wait(1.5)
+          self.play(Transform(step, MathTex(r"\frac{6.687}{30\,ln(0.931)}(e^{(ln(0.931))30})-1").scale(0.7).next_to(equalSign, RIGHT)))
+          self.wait(1)
+          self.play(FadeOut(definite_integral_eval, equalSign))
+          self.play(step.animate.shift(LEFT * 2))
+          self.play(Transform(step, MathTex(r"\frac{6.687}{30\,ln(0.931)}(e^{30\,ln(0.931)})-1").scale(0.7).move_to(step.get_center())))
+          equalSign.next_to(step, LEFT)
+          
+          # We now know that the integral of A(t) is equal to this:
+          definiteIntegralExpr = MathTex("\\int_{0}^{30}", "A(", "t", ")", "dt").scale(0.7).next_to(equalSign, LEFT)
+        
+          self.play(Write(definiteIntegralExpr), Write(equalSign))
+          
           
