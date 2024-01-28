@@ -11,3 +11,6 @@ file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movi
 file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_1704852926_15300182.mp4'
 file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_2939252677_3404249322.mp4'
 file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_1754225512_2509804480.mp4'
+file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_2663381030_2239056161.mp4'
+file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_1141282389_3653355435.mp4'
+file 'file:C:/Users/There/calcbcfrqmanim/media/videos/scene/1080p60/partial_movie_files/Solution/2852726489_1487824514_1977926693.mp4'

@@ -308,7 +308,10 @@ class Solution(Scene):
           self.play(definite_integral_eval.animate.shift(UP * 1.2 + LEFT * 0.3))
           equalSign.next_to(definite_integral_eval, RIGHT)
           self.play(Write(equalSign))
-          recallText = Text("Factor").next_to(equalSign, RIGHT).scale(0.5)
+          recallText = Text("Factor").shift(LEFT + DOWN ).scale(0.5)
           recallTextp2 = MathTex(r"\frac{6.687}{ln(0.931)}").scale(0.7).next_to(recallText, RIGHT)
           self.play(Write(recallText), Write(recallTextp2))
+          self.wait(2)
+          self.play(FadeOut(recallText, recallTextp2))
+
           
