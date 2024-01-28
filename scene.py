@@ -209,8 +209,53 @@ class Solution(Scene):
           self.play(Write(recallText))
           self.play(Write(equation))
           self.play(Write(recallTextp2))
-          text = Text("Average amount of grass clippings: ").scale(0.5).shift(LEFT * 3.5 + UP * 0.6)
-          averageAmount = MathTex(r"\frac{1}{b - a} \int_b^a A(t)\,dt").scale(0.7).move_to(text.get_center() + RIGHT * 3.42)
+          text = Text("Average amount of grass clippings: ").scale(0.5).shift(LEFT * 3.25 + UP * 0.6)
+          
+          
+          averageAmount = MathTex(r"\frac{1}{b - a} \int_b^a A(t)\,dt").scale(0.7).move_to(text.get_center() + RIGHT * 4)
           self.play(Write(text))
           self.play(Write(averageAmount))
-            
+          zero = MathTex("0").shift(LEFT)
+          middleOfInterval = MathTex("\leq t \leq")
+          thirty = MathTex("30").shift(RIGHT)
+          interval = VGroup(zero, middleOfInterval, thirty).scale(0.7).shift(DOWN * 0.4)
+          self.play(Write(interval))
+          arrowa = Arrow(start=interval.get_center() + DOWN * 1.2 + LEFT * 0.7, end = interval.get_center() + DOWN * 0.1 + LEFT * 0.7)
+          arrowb = Arrow(start=interval.get_center() + DOWN * 1.2 + RIGHT * 0.6, end = interval.get_center() + DOWN * 0.1 + RIGHT * 0.6)
+          a = Text("a").scale(0.5).shift(arrowa.get_center() + DOWN * 0.5)
+          b = Text("b").scale(0.5).shift(arrowb.get_center() + DOWN * 0.5)
+          
+          self.wait(1)
+          
+          self.play(Write(arrowa))  
+          self.play(Write(arrowb)) 
+          self.play(Write(a), Write(b))
+          
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30 - 0}\int_0^{30}A(t)\,dt").scale(0.7).move_to(text.get_center() + RIGHT * 4.18)))
+          
+          self.wait(2) 
+                    
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30}\int_0^{30}A(t)\,dt").scale(0.7).move_to(text.get_center() + RIGHT * 4)))
+
+          # Script: Now the question is asking: when is the total number of grass clippings equal to average amount? 
+          # So, we simply set them equal to each other! 
+          
+          self.wait(9)
+          
+          self.play(FadeOut(recallText, recallTextp2, text, arrowa, arrowb, a, b, interval))
+          self.play(Transform(equation, MathTex("6.687(0.931)^t").scale(0.7).move_to(equation.get_center())))
+          self.play(equation.animate.shift(LEFT * 3), averageAmount.animate.shift(UP * 0.9 + LEFT * 1.6))
+          equalSign = MathTex("=").scale(0.7).move_to(equation.get_center() + RIGHT * 1.3)
+          self.play(Write(equalSign))
+          
+          self.wait(3)
+          
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30}\,\int_0^{30}6.687(0.931)^t\,dt").move_to(averageAmount.get_center() + RIGHT * 0.67).scale(0.7)))
+          
+          self.wait()
+          
+          # Let's evaluate the right side first!
+          self.wait(1)
+          
+          self.play(averageAmount.animate.shift(LEFT * 4), FadeOut(equalSign, equation))
+          
