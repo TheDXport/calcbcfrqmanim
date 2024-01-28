@@ -294,5 +294,8 @@ class Solution(Scene):
           self.wait(2)
           
           self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687e^{0}}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
+          
+          self.wait(1.5)
+          
           self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687(1)}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
-          self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687}}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
+       
