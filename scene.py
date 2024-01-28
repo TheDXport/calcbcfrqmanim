@@ -281,9 +281,18 @@ class Solution(Scene):
           
           self.wait(2)
           
-          integral_expr = MathTex(r"\frac{1}{30}\,\frac{6.687e^{ln(0.931)t}}{ln(0.931)}").scale(0.7).move_to(averageAmount.get_center() + RIGHT * 4)
+          equalSign = MathTex("=").scale(0.7).move_to(averageAmount.get_center() + RIGHT * 2.2)
+          integral_expr = MathTex(r"\frac{1}{30}\,(\frac{6.687e^{ln(0.931)t}}{ln(0.931)})").scale(0.7).move_to(equalSign.get_center() + RIGHT * 1.8)
           bounds = MathTex("\\Bigg|", "_0", "^{30}").scale(0.7)
           bounds.next_to(integral_expr, RIGHT)
-          self.add(integral_expr, bounds)
-        
-       
+          self.play(Write(equalSign))
+          self.play(Write(integral_expr))
+          self.play(Write(bounds))
+          definite_integral_eval = MathTex (r"\frac{1}{30}\,((\frac{6.687e^{ln(0.931)30}}{ln(0.931)})-(\frac{6.687e^{ln(0.931)0}}{ln(0.931)}))").scale(0.7).move_to(averageAmount.get_center() + DOWN * 1.5 + RIGHT * 1.3)
+          self.play(Write(definite_integral_eval))
+          
+          self.wait(2)
+          
+          self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687e^{0}}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
+          self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687(1)}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
+          self.play(Transform(definite_integral_eval, MathTex(r"\frac{1}{30}\,((\frac{6.687e^{(ln(0.931))30}}{ln(0.931)})-(\frac{6.687}}{ln(0.931)}))").scale(0.7).move_to(definite_integral_eval.get_center())))
