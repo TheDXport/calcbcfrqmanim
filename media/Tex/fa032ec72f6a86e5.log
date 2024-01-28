@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded for
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./media/Tex/6a73e37b4f396d67.tex
-(media/Tex/6a73e37b4f396d67.tex
+**./media/Tex/fa032ec72f6a86e5.tex
+(media/Tex/fa032ec72f6a86e5.tex
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
 
@@ -175,8 +175,8 @@ File: l3backend-dvips.def 2023-11-09 L3 backend support: dvips
 \g__pdf_backend_link_int=\count281
 \g__pdf_backend_link_sf_int=\count282
 )
-No file 6a73e37b4f396d67.aux.
-\openout1 = `6a73e37b4f396d67.aux'.
+No file fa032ec72f6a86e5.aux.
+\openout1 = `fa032ec72f6a86e5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
@@ -202,7 +202,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 Preview: Tightpage 0 0 0 0
-[1] (C:\Users\There\calcbcfrqmanim\media\Tex\6a73e37b4f396d67.aux)
+[1] (C:\Users\There\calcbcfrqmanim\media\Tex\fa032ec72f6a86e5.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
@@ -215,7 +215,7 @@ Here is how much of TeX's memory you used:
  25717 multiletter control sequences out of 15000+600000
  559768 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,10n,71p,244b,163s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 70i,13n,71p,244b,178s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on C:\Users\There\calcbcfrqmanim\media\Tex\6a73e37b4f396d67.dvi 
-(1 page, 1880 bytes).
+Output written on C:\Users\There\calcbcfrqmanim\media\Tex\fa032ec72f6a86e5.dvi 
+(1 page, 1744 bytes).
