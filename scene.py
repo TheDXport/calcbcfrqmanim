@@ -258,4 +258,32 @@ class Solution(Scene):
           self.wait(1)
           
           self.play(averageAmount.animate.shift(LEFT * 4), FadeOut(equalSign, equation))
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30}\,6.687\int_0^{30}(0.931)^t\,dt").scale(0.7).move_to(averageAmount.get_center())))
+          recallText = Text("We know that ").scale(0.5)
+          eln = MathTex("e^{ln(k)}").scale(0.7)
+          recallTextp2 = Text("cancels out to").scale(0.5)
+          k = MathTex("k").scale(0.7)
+          combined = VGroup(recallText, eln, recallTextp2, k).arrange(RIGHT)
+          self.play(Write(combined))
           
+          self.wait(2)
+          
+          self.play(Transform(combined, Text("Hence, we can rewrite as follows!").scale(0.5)))
+          
+          self.wait()
+          
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30}\,6.687\int_0^{30}e^{ln(0.931^t)}\,dt").scale(0.7).move_to(averageAmount.get_center() + RIGHT * 0.32)))
+          self.play(FadeOut(combined))
+          
+          self.wait()
+          
+          self.play(Transform(averageAmount, MathTex(r"\frac{1}{30}\,6.687\int_0^{30}e^{ln(0.931)t}\,dt").scale(0.7).move_to(averageAmount.get_center())))
+          
+          self.wait(2)
+          
+          integral_expr = MathTex(r"\frac{1}{30}\,\frac{6.687e^{ln(0.931)t}}{ln(0.931)}").scale(0.7).move_to(averageAmount.get_center() + RIGHT * 4)
+          bounds = MathTex("\\Bigg|", "_0", "^{30}").scale(0.7)
+          bounds.next_to(integral_expr, RIGHT)
+          self.add(integral_expr, bounds)
+        
+       
