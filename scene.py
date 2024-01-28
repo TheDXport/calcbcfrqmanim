@@ -334,7 +334,12 @@ class Solution(Scene):
           self.play(FadeOut(definiteIntegralExpr))
           equation = MathTex("6.687(0.931)^t").next_to(equalSign, LEFT * 0.1).scale(0.7).shift(RIGHT * 0.3)
           self.play(Write(equation))
-          arrow = DoubleArrow(start=equation.get_center() + LEFT * 0.4 + UP * 0.05, end=step.get_center() + LEFT * 1.6 , color=GOLD_A, tip_length=0.5, max_tip_length_to_length_ratio=0.1)
+          arrow = DoubleArrow(start=equation.get_center() + LEFT * 0.4 + UP * 0.05, end=step.get_center() + LEFT * 1.5 + UP * 0.25, color=GOLD_A, tip_length=0.5, max_tip_length_to_length_ratio=0.1)
           self.play(Write(arrow))
+        
+          self.wait(2)
+          self.play(FadeOut(arrow))
+          
+          
           
           
