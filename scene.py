@@ -344,7 +344,7 @@ class Solution(Scene):
           self.wait(2)
           self.play(Transform(step, MathTex(r"\frac{e^{30\,ln(0.931)}-1}{30\,ln(0.931)}").scale(0.7).next_to(equalSign, RIGHT)))
           self.wait(1)
-          self.play(Transform(equation, MathTex(r"ln(0.931^t)")), Transform(step, MathTex(r"ln(\frac{e^{30\,ln(0.931)}-1}{30\,ln(0.931)})")))
+          self.play(Transform(equation, MathTex(r"ln(0.931^t)").scale(0.7).next_to(equalSign, LEFT))), Transform(step, MathTex("ln(\frac{e^{30\,ln(0.931)}-1}{30\,ln(0.931)})").scale(0.7).next_to(equalSign, RIGHT))
 
           
           
