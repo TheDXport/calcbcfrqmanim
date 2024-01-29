@@ -372,10 +372,16 @@ class Solution(Scene):
           self.play(combined.animate.shift(LEFT * 2 + DOWN * 0.5))
           equalSign2 = MathTex("=").next_to(step, RIGHT)
           self.play(Write(equalSign2))
-          answer = MathTex("12.4148").next_to(equalSign2, RIGHT)
+          answer = MathTex("12.4148").scale(0.9).next_to(equalSign2, RIGHT)
+          units = Text("days").scale(0.6).next_to(answer, RIGHT * 0.7)
           self.play(Write(answer))
+          self.play(Write(units))
+          answer_circle = Ellipse(color=YELLOW).surround(VGroup(answer, units))
+          self.play(ShowCreationThenFadeOut(answer_circle))
           
+          self.wait(3)
           
+          self.play(FadeOut(partcquestion, equalSign2, combined, answer_circle, answer, units))
           
           
           
