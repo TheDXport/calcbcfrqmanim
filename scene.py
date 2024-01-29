@@ -344,8 +344,11 @@ class Solution(Scene):
           self.wait(2)
           self.play(Transform(step, MathTex(r"\frac{e^{30\,ln(0.931)}-1}{30\,ln(0.931)}").scale(0.7).next_to(equalSign, RIGHT)))
           self.wait(1)
-          self.play(Transform(equation, MathTex(r"ln(0.931^t)").scale(0.7).next_to(equalSign, LEFT))), Transform(step, MathTex("ln(\frac{e^{30\,ln(0.931)}-1}{30\,ln(0.931)})").scale(0.7).next_to(equalSign, RIGHT))
-
+          self.play(Transform(equation, MathTex("ln(0.931^t)").scale(0.7).next_to(equalSign, LEFT)), Transform(step, MathTex(r"ln(\frac{e^{30ln(0.931)}-1}{30ln(0.931)})").scale(0.7).next_to(equalSign,RIGHT)))
+          self.wait(2) 
+          # Again, according to the law of natural logs, we can take the t out.
+          self.play(Transform(equation, MathTex("ln(0.931)t").next_to(equalSign, LEFT * 0.7).scale(0.7).shift(RIGHT * 0.3)))
+          self.wait()
           
           
           
