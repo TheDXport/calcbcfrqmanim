@@ -384,11 +384,21 @@ class Solution(Scene):
         #   self.play(FadeOut(partcquestion, equalSign2, combined, answer_circle, answer, units))
           partdquestion = Text("d) For t > 30, L(t), the linear approximation to A at t = 30, is a better model for the amount of grass clippings\n      remaining in the bin. Use L(t) to predict the time at which there will be 0.5 pound of grass clippings in the\n      bin. Show the work that leads to your answer.", line_spacing=1.1).shift(UP * 3 + LEFT * 0.07).scale(0.43)
           self.play(Write(partdquestion), run_time=7)
+          axes = Axes(
+            x_range=[28, 40, 2],  # Assuming we want to show from t=28 to t=40
+            y_range=[0, 1.2, 0.2],  # Assuming A(t) ranges from 0 to 1.2 pounds
+            axis_config={"color": BLUE},
+          ).scale(0.45)
+
+          # Labels for axes
+          x_label = axes.get_x_axis_label(Tex("t (minutes)"))
+          y_label = axes.get_y_axis_label(Tex("A(t) (pounds)"))
+
           
-          
-          
-          
-          
-          
-          
+            
+            
+            
+            
+            
+            
           
