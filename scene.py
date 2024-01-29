@@ -340,11 +340,14 @@ class Solution(Scene):
           
           # Now we need to solve for t 
           combined = VGroup(definiteIntegralExpr, equalSign, step)
-          self.play(combined.animate.shift(LEFT))
+          self.play(combined.animate.shift(LEFT * 0.5))
           self.play(FadeOut(definiteIntegralExpr))
           equation = MathTex("6.687(0.931)^t").next_to(equalSign, LEFT * 0.1).scale(0.82)
           self.play(Write(equation))
-          arrow = DoubleArrow(start=equation.get_center() + LEFT * 0.4 + UP * 0.05, end=step.get_center() + LEFT * 1.5 + UP * 0.25, color=GOLD_A, tip_length=0.5, max_tip_length_to_length_ratio=0.1)
+          arrow = DoubleArrow(start=equation.get_center() + LEFT * 0.4 + UP * 0.05, end=step.get_center() + LEFT * 1.7 + UP * 0.25, color=GOLD_A, tip_length=0.5, max_tip_length_to_length_ratio=0.1)
+          
+          self.wait(2)
+          
           self.play(Write(arrow))
         
           self.wait(2)
