@@ -348,7 +348,21 @@ class Solution(Scene):
           self.wait(2) 
           # Again, according to the law of natural logs, we can take the t out.
           self.play(Transform(equation, MathTex("ln(0.931)t").next_to(equalSign, LEFT * 0.7).scale(0.7).shift(RIGHT * 0.3)))
-          self.wait()
+          self.wait()                      
+          self.play(Transform(equation, MathTex(r"\frac{ln(0.931)t}{ln(0.931)}").next_to(equalSign, LEFT * 0.7).shift(RIGHT * 0.3)))
+          self.wait(2)
+          self.play(Transform(step, MathTex(r'\frac{ ln(\frac{e^{30ln(0.931)}-1} {30ln(0.931)} ) } {ln(0.931)}').next_to(equalSign, RIGHT)))
+          self.wait(2)
+          self.play( Transform(equation, MathTex("t").next_to(equalSign, LEFT )))
+          self.wait(2)
+          combined = VGroup(equation, equalSign, step)
+          self.play(combined.animate.shift(LEFT * 2 + DOWN * 0.5))
+          equalSign2 = MathTex("=").next_to(step, RIGHT)
+          self.play(Write(equalSign2))
+          answer = MathTex("12.4148").next_to(equalSign2, RIGHT)
+          self.play(Write(answer))
+          
+          
           
           
           
