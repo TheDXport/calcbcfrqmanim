@@ -319,6 +319,8 @@ class Solution(Scene):
           self.play(Write(recallText), Write(recallTextp2))
           self.wait(2)
           self.play(FadeOut(recallText, recallTextp2))
+          combined = VGroup(equalSign, definite_integral_eval)
+          self.play(combined.animate.shift(LEFT * 0.7))
           step = MathTex(r"\frac{1}{30}\,\frac{6.687}{ln(0.931)}(e^{ln(0.931)30})-1").scale(0.82).next_to(equalSign, RIGHT)
           self.play(Write(step))
           self.wait(1.5)
