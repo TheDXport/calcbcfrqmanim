@@ -466,14 +466,24 @@ class g(MovingCameraScene):
     
     
     self.play(
-        Transform(axes, new_axes),
-        Transform(graph, new_graph),
+        # Transform(axes, new_axes),
+        # Transform(graph, new_graph),
         function.animate.shift(UP),
         run_time=2
     )
 
     # Your final camera frame state save if needed
     self.camera.frame.save_state()
+    
+    rect = Rectangle(color=LOGO_BLACK, width=2.2, height = 1.1, fill_opacity=1, fill_color=LOGO_BLACK).shift(DOWN + RIGHT * 2)
+    
+    self.play(DrawBorderThenFill(rect))
+    
+    
+    
+    
+    # self.play(Restore(self.camera.frame))
+
   
           
 
