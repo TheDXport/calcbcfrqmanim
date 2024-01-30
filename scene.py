@@ -406,10 +406,75 @@ class Solution(Scene):
           graph = axes.plot(func_to_plot, color=GREEN)
 
           # Add axes, labels, and the graph of the function to the scene
-          self.play(Write(axes), Write(x_label), Write(y_label))
+          self.play(FadeIn(axes))
           self.play(Create(graph))
-          function = MathTex(r"A(t) = 6.687(0.931)^t").scale(0.9).next_to(axes, UP )
+          function = MathTex(r"A(t) = 6.687(0.931)^t").scale(0.8).shift(axes.get_center() + UP)
           self.play(Write(function))
+          
+          
+class g(MovingCameraScene):
+  def construct(self):
+    partdquestion = Text("d) For t > 30, L(t), the linear approximation to A at t = 30, is a better model for the amount of grass clippings\n      remaining in the bin. Use L(t) to predict the time at which there will be 0.5 pound of grass clippings in the\n      bin. Show the work that leads to your answer.", line_spacing=1.1).shift(UP * 3 + LEFT * 0.07).scale(0.43)
+    self.play(Write(partdquestion), run_time=7)
+    axes = Axes(
+      x_range=[0, 40, 1],  # Assuming we want to show from t=28 to t=40
+      y_range=[0, 9, 1],  # Assuming A(t) ranges from 0 to 1.2 pounds
+      axis_config={"color": BLUE},
+      x_axis_config={
+          "numbers_to_include": np.arange(0, 40, 5),  # Numbers from 28 to 40 inclusive
+          "include_numbers": True,  # Include numbers on the x-axis
+      },
+      y_axis_config={
+          "numbers_to_include": np.arange(0, 9, 1),  # Numbers from 0 to 1.2 inclusive
+          "include_numbers": True,  # Include numbers on the y-axis
+      },
+  ).scale(0.65).shift(DOWN * 0.3)
+
+    
+    def func_to_plot(t):
+      return 6.687 * (0.931)**t
+
+    # Create the graph of the function
+    graph = axes.plot(func_to_plot, color=GREEN)
+
+    # Add axes, labels, and the graph of the function to the scene
+    self.play(FadeIn(axes))
+    self.play(Create(graph))
+    function = MathTex(r"A(t) = 6.687(0.931)^t").scale(0.8).shift(axes.get_center() + UP)
+    self.play(Write(function))
+    
+    # New axes with the desired range
+    new_axes = Axes(
+        x_range=[28, 39, 1],
+        y_range=[0, 1, 0.25],
+        axis_config={"color": BLUE},
+        x_axis_config={
+          "numbers_to_include": np.arange(28, 39, 1),  # Numbers from 28 to 40 inclusive
+          "include_numbers": False,  # Include numbers on the x-axis
+      },
+      y_axis_config={
+          "numbers_to_include": np.arange(0, 1, 0.25),  # Numbers from 0 to 1.2 inclusive
+          "include_numbers": False,  # Include numbers on the y-axis
+      },
+        tips=True  # Remove the arrow tips from the axes
+    ).scale(0.65).shift(DOWN * 0.3)
+
+    # Plot the graph on the new axes
+    new_graph = new_axes.plot(func_to_plot, color=GREEN, x_range=[28, 39])
+
+    # Animate the transformation of the old axes to the new ones
+    
+    
+    self.play(
+        Transform(axes, new_axes),
+        Transform(graph, new_graph),
+        function.animate.shift(UP),
+        run_time=2
+    )
+
+    # Your final camera frame state save if needed
+    self.camera.frame.save_state()
+  
           
 
           
