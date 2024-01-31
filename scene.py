@@ -438,8 +438,14 @@ class Solution(Scene):
         self.play(pointslope[2:].animate.shift(LEFT * 2.15), Transform(pointslope[1:2], MathTex(r"+\,0.78293").shift(pointslope[1:2].get_center())))
         self.play(pointslope[1:2].animate.next_to(pointslope[2:], RIGHT))
         self.play(Transform(pointslope[0:1], MathTex("L(t)").next_to(pointslope[1:], LEFT)))
-        # Now the question is asking us 
-
+        # Now the question is asking us when  L(t) = 0.05 pounds of grass clippings
+        # To do this, we  need to solve for t given L(t) = 0.05
+        self.wait(3) 
+        self.play(Transform(pointslope[0:1], MathTex("0.5").next_to(pointslope[1:], LEFT)))
+        oppovalue = MathTex("-0.78293").next_to(pointslope[1:2], DOWN)
+        oppovalue2 = MathTex("-0.78293").next_to(pointslope[0:1], DOWN)
+        self.play(FadeIn(oppovalue, oppovalue2))
+        
 
         
         
