@@ -388,16 +388,16 @@ class Solution(Scene):
         self.play(Write(partdquestion), run_time=7)
         
         text = Text("Point-slope Form:").shift(UP)
-        pointslope  = MathTex("y - y_1 = m(x - x_1)")
+        pointslope  = MathTex("y - y_1 = m(t - t_1)")
 
         
         self.play(Write(text))
         self.wait(1.8)
         self.play(Write(pointslope))
         self.wait()
-        self.play(Transform(pointslope, MathTex("y - A(30) = m(x - x_1)")))
-        self.play(Transform(pointslope, MathTex("y - A(30) = m(x - 30)")))
-        self.play(Transform(pointslope, MathTex("y - A(30) = A'(30)(x - 30)")))
+        self.play(Transform(pointslope, MathTex("y - A(30) = m(t - x_1)")))
+        self.play(Transform(pointslope, MathTex("y - A(30) = m(t - 30)")))
+        self.play(Transform(pointslope, MathTex("y - A(30) = A'(30)(t - 30)")))
         self.play(FadeOut(text))
         recallText = Text("Recall that when we plug in 30 into our original equation:").shift(UP).scale(0.66)
         equation = MathTex("A(t) = 6.687(0.931)^t")
@@ -411,7 +411,7 @@ class Solution(Scene):
         self.play(Transform(equation, MathTex("A(30) = 0.782928")))
         self.wait(1)
         
-        step = MathTex("y - 0.78293 = A'(30)(x - 30)").shift(pointslope.get_center())
+        step = MathTex("y - 0.78293 = A'(30)(t - 30)").shift(pointslope.get_center())
         self.play(
             AnimationGroup(
                 FadeOut(equation, recallText),
@@ -428,9 +428,9 @@ class Solution(Scene):
         self.wait()
         self.play(Transform(equation, MathTex("A'(30) = -0.478094(0.931)^{30}")))
         self.wait()
-        self.play(Transform(equation, MathTex("A'(30) = -0.056")))
+        self.play(Transform(equation, MathTex("A'(30) = -0.05597")))
         self.wait()
-        self.play(FadeOut(equation, text), Transform(step, MathTex("y", "- 0.78293" , " = -0.056(x-30)^t").shift(pointslope.get_center())))
+        self.play(FadeOut(equation, text), Transform(step, MathTex("y", "- 0.78293" , " = -0.05597(t-30)").shift(pointslope.get_center())))
         self.play(step.animate.shift(UP * 1.5))
         pointslope = step
         self.wait()
@@ -445,6 +445,41 @@ class Solution(Scene):
         oppovalue = MathTex("-0.78293").next_to(pointslope[1:2], DOWN)
         oppovalue2 = MathTex("-0.78293").next_to(pointslope[0:1], DOWN)
         self.play(FadeIn(oppovalue, oppovalue2))
+        
+        self.wait()
+        
+        self.play(FadeOut(pointslope[1:2], oppovalue, oppovalue2), Transform(pointslope[0:1], MathTex("-0.28293").next_to(pointslope[2:3], LEFT) ))
+        self.play(pointslope[0:1].animate.shift(RIGHT* 2), pointslope[2:].animate.shift(RIGHT* 2))
+        line = Line(pointslope[0:1].get_left(), pointslope[0:1].get_right() + RIGHT * 0.4, color=WHITE).next_to(pointslope[0:1], DOWN)
+        line2 = Line(pointslope[2:].get_left() + RIGHT + UP * 0.3, pointslope[2:].get_right() + RIGHT * 0.4 + UP * 0.3, color=WHITE)
+        line2.next_to(pointslope[2:], DOWN).shift(UP * 0.08)
+
+        self.play(Create(line), Create(line2))
+        value = MathTex("-0.05597").next_to(line, DOWN)
+        value2 = MathTex("-0.05597").next_to(line2, DOWN)
+        self.play(Write(value), Write(value2))
+        
+        self.wait()
+        self.play(FadeOut(line, line2, value, value2), Transform(pointslope[0:1], MathTex("5.05503").move_to(pointslope[0:1].get_center())))
+        self.play(Transform(pointslope[2:3], MathTex("= t - 30").next_to(pointslope[0:1], RIGHT)))
+        value = MathTex("+ 30").next_to(pointslope[0:1], DOWN).shift(RIGHT * 0.42 + DOWN * 0.1)
+        value2 = MathTex("+ 30").next_to(pointslope[2:3], DOWN).shift(RIGHT * 0.48 + DOWN * 0.1)
+        
+        self.play(Write(value), Write(value2))
+        
+        self.wait()
+        
+        self.play(FadeOut(value, value2), Transform(pointslope[0:1], MathTex("35.05503").move_to(pointslope[0:1].get_center())), Transform(pointslope[2:3], MathTex("= t").next_to(pointslope[0:1], RIGHT)))
+        
+        self.wait()
+        
+        self.play(Transform(pointslope[0:1], MathTex(r"t = ").shift(LEFT)), Transform(pointslope[2:3], MathTex(r"35.5503 \;days").shift(RIGHT * 0.9 + DOWN * 0.05)))
+        answer_combined = VGroup(pointslope[0:1], pointslope[2:3])
+        answer_circle = Ellipse(color=YELLOW).surround(answer_combined)
+        self.play(answer_circle)
+        
+        
+
         
 
         
