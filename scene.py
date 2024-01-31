@@ -435,9 +435,10 @@ class Solution(Scene):
         pointslope = step
         self.wait()
         self.play(pointslope[1:2].animate.shift(DOWN))
-
-
-        # self.play(Transform(pointslope, MathTex("y = -0.056(x-30)^t + 0.78293")))
+        self.play(pointslope[2:].animate.shift(LEFT * 2.15), Transform(pointslope[1:2], MathTex(r"+\,0.78293").shift(pointslope[1:2].get_center())))
+        self.play(pointslope[1:2].animate.next_to(pointslope[2:], RIGHT))
+        self.play(Transform(pointslope[0:1], MathTex("L(t)").next_to(pointslope[1:], LEFT)))
+        # Now the question is asking us 
 
 
         
