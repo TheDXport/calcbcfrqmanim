@@ -387,17 +387,59 @@ class Solution(Scene):
         partdquestion = Text("d) For t > 30, L(t), the linear approximation to A at t = 30, is a better model for the amount of grass clippings\n      remaining in the bin. Use L(t) to predict the time at which there will be 0.5 pound of grass clippings in the\n      bin. Show the work that leads to your answer.", line_spacing=1.1).shift(UP * 3 + LEFT * 0.07).scale(0.43)
         self.play(Write(partdquestion), run_time=7)
         
-        point_slope_formula_text  = MathTex("y - y_1 = m(x - x_1)")
-        point_on_the_line_text = MathTex("(x, y) = (x_1, y_1)").shift(DOWN)
+        text = Text("Point-slope Form:").shift(UP)
+        pointslope  = MathTex("y - y_1 = m(x - x_1)")
+
         
-        self.play(Write(point_slope_formula_text))
+        self.play(Write(text))
+        self.wait(1.8)
+        self.play(Write(pointslope))
         self.wait()
-        self.play(Transform(point_slope_formula_text, point_on_the_line_text))
-        self.play(Write(point_on_the_line_text))
+        self.play(Transform(pointslope, MathTex("y - A(30) = m(x - x_1)")))
+        self.play(Transform(pointslope, MathTex("y - A(30) = m(x - 30)")))
+        self.play(Transform(pointslope, MathTex("y - A(30) = A'(30)(x - 30)")))
+        self.play(FadeOut(text))
+        recallText = Text("Recall that when we plug in 30 into our original equation:").shift(UP).scale(0.66)
+        equation = MathTex("A(t) = 6.687(0.931)^t")
+        self.play(pointslope.animate.shift(DOWN * 1.5))
+        self.play(FadeIn(recallText))
+        self.wait(1)
+        self.play(FadeIn(equation))
+        self.wait(2)
+        self.play(Transform(equation, MathTex("A(30) = 6.687(0.931)^{30}")))
+        self.wait(0.5)
+        self.play(Transform(equation, MathTex("A(30) = 0.782928")))
+        self.wait(1)
+        
+        step = MathTex("y - 0.78293 = A'(30)(x - 30)").shift(pointslope.get_center())
+        self.play(
+            AnimationGroup(
+                FadeOut(equation, recallText),
+                TransformMatchingTex(pointslope, step, run_time=0.8),
+                lag_ratio=0
+            )
+        ) 
+        self.wait(2)
+        text = Text("Now we have to find A'(30)").scale(0.69).shift(UP * 1.3)
+        self.play(Write(text))
+        equation = MathTex(r"\frac{d}{dx}\,A(t) = 6.687(0.931)^t")
+        self.play(FadeIn(equation))
+        self.play(Transform(equation, MathTex("A'(t) = -0.478094(0.931)^t")))
         self.wait()
-        
-        
-        self.remove(point_on_the_line_text)
+        self.play(Transform(equation, MathTex("A'(30) = -0.478094(0.931)^{30}")))
+        self.wait()
+        self.play(Transform(equation, MathTex("A'(30) = -0.056")))
+        self.wait()
+        self.play(FadeOut(equation, text), Transform(step, MathTex("y", "- 0.78293" , " = -0.056(x-30)^t").shift(pointslope.get_center())))
+        self.play(step.animate.shift(UP * 1.5))
+        pointslope = step
+        self.wait()
+        self.play(pointslope[1:2].animate.shift(DOWN))
+
+
+        # self.play(Transform(pointslope, MathTex("y = -0.056(x-30)^t + 0.78293")))
+
+
         
         
         
