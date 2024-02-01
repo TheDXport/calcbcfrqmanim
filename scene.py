@@ -218,7 +218,7 @@ class partc(Scene):
     text = Text("Average amount of grass clippings: ").scale(0.5).shift(LEFT * 3.25 + UP * 0.6)
     
     
-    averageAmount = MathTex(r"\frac{1}{b - a} \int_b^a A(t)\,dt").scale(0.82).next_to(text)
+    averageAmount = MathTex(r"\frac{1}{b - a} \int_a^b A(t)\,dt").scale(0.82).next_to(text)
     self.play(Write(text))
     self.play(Write(averageAmount))
     zero = MathTex("0").shift(LEFT)
