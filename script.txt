@@ -1,0 +1,74 @@
+Grass clippings are placed in a bin, where they decompose. For the interval 0 to 30,
+the amount of grass clippings remaining in the bin is modeled by A = 6.687(0.931)^t
+where A(t) is measured in pounds and t is measured in days.
+Part a is asking us, Find the average rate of change of A(t) over the interval 0 to 30. 
+and Indicate units of measure.
+
+now we can use the slope formula: y2 - y1 over x2 - x1
+let's substitute in terms of A, and then substitute again with its actual equation
+snap snap snap snap
+
+finally we have -0.1968 as our final answer, and don't forget our units, pounds per day
+
+
+part b is asking us, find the value of A'(15). Using correct units interpret the meaning of 
+the value in the context of the problem
+
+we already know that the derivative of a function is simply a tangent linear line along a function
+for the purpose of this project, we can visualize it with a graph. 
+
+we can see that the tangent line when x = 15 looks something like this, a decently steep linear line
+
+let's take the derivative of the function with respect to t, since this is calculator active,
+you are permitted to use a calculator, but i am too lazy to do so. so im going to calculate 
+this by hand. we know that e and ln cancel each other out, so we can rewrite our expression like so 
+according to the laws of logarithms, we can take the t out and multiply it with the natural log term
+
+now when we use chain rule and multiply with ln(0.931)
+now, since we're trying to find A'(15), we plug in 15 
+
+This means that the total amount of grass clippings in the bin is decreasing at 
+exactly -0.1635 pounds per day specifically on day 15 
+
+
+
+part c is asking us Find the time t for which the amount of grass clippings in the bin is equal to the
+average amount of grass clippings in the bin over the interval 0 to 30 
+
+Recall that we are given A(t) = 6.687(0.931)^t as the total grass clippings
+while the average amount of grass clippings can be represented with the average value formula
+one over b minus a times the integral of A(t) with respect to t 
+
+now let's plug in a and b respectively
+
+let's set both expressions to each other
+
+first let's evaluate the definite integral:
+let's take the constant out
+we already know that e to the power of ln of k cancels out to k or whatever term is inside the natural log
+so we can rewrite the integral
+taking the integral will get us this:
+
+now we can use the properties of integrals to evaluate by plugging in 30 and 0  
+ln(0.931) * 0 is 0 and e to the power of 0 is one 
+
+we can then   out 6.687 over ln(0.931) as a common factor
+let's rewrite so its looks prettier
+ 
+we now know that the integral with a lower bound of 0 and a upper bound of 30 of A(t) is equal to 
+6.687 over 30 * ln(0.931) times e to the power of 30 * ln(0.931) - 1
+
+now to answer the question, let's set it equal to the standard equation
+
+since 6.687 is a reciprocal on each side of the equation, they can cancel out
+
+let's rewrite
+
+now we can take the natural log on both sides
+take the t down with the property of natural logarithms
+divide both sides by the ln(0.931)
+the left side cancels out 
+
+
+
+

@@ -7,7 +7,7 @@ class parta(Scene):
       self.play(Write(title))
       underline = Underline(title, color=WHITE, buff=0.5).shift(UP * 0.35)
       xin = Text("presented and coded by xinathan :D").scale(0.6)
-      seeattachedforsourcecode = Text("this is calculator active + see attached for the source code!").scale(0.34).shift(DOWN * 0.55)
+      seeattachedforsourcecode = Text("calculator active + see attached for the source code!").scale(0.34).shift(DOWN * 0.55)
       self.play(Create(underline), Write(xin, run_time=1.2))
       
       self.wait(0.7)
@@ -17,7 +17,8 @@ class parta(Scene):
       self.wait(1.6)
       
       self.play(FadeOut(title, xin, underline, seeattachedforsourcecode))
-      
+      # S: Grass clippings are placed in a bin, where they decompose. For 0 ≤ t ≤ 30, the amount of grass clippings remaining in the bin is modeled by A(t) = 6.687(0.931)^t
+      # where A(t) is measured in pounds and t is measured in days.
       questionbackgroundp1 = Text("Grass clippings are placed in a bin, where they decompose. For 0 ≤ t ≤ 30, the amount of grass ").scale(0.5).shift(UP * 3)
       questionbackgroundp2 = Text("clippings remaining in the bin is modeled by ").scale(0.5).shift(UP * 2.47 + LEFT * 3.28)
       equation = MathTex('A(t) = 6.687(0.931)^t').scale(0.67).shift(UP * 2.49 + RIGHT *1.26 )
@@ -31,7 +32,7 @@ class parta(Scene):
       self.play(Write(questionbackgroundp4)) 
       
       self.wait(1.2)
-      
+      # S:  Part a asks: find the average rate of change of A(t) over the interval 0 ≤ t ≤ 30.Indicate units of measure.
       partaquestion = Text("a) Find the average rate of change of A(t) over the interval 0 ≤ t ≤ 30. Indicate units of measure. ").scale(0.5).shift(UP * 1.25+ RIGHT * 0.1)
       self.play(Write(partaquestion))
       
@@ -39,7 +40,7 @@ class parta(Scene):
       
       slope_formula = MathTex(r"\frac{y_2 - y_1}{x_2 - x_1}").shift(DOWN * 0.2)
       self.play(Write(slope_formula))
-      self.play(slope_formula.animate.shift(LEFT * 1.7), run_time=3.5)
+      self.play(slope_formula.animate.shift(LEFT * 1.7), run_time=1)
       equal_sign = MathTex('=').shift(LEFT * 0.4 + DOWN * 0.14)
       self.wait(0.8)
       self.play(Write(equal_sign))
@@ -85,8 +86,6 @@ class parta(Scene):
       self.wait(1) 
       
       self.play(FadeOut(questionbackgroundp1, questionbackgroundp2, questionbackgroundp3, questionbackgroundp4, partaquestion, answer_circle, answer_combined, equation))
-      
-      self.wait(2)
         
 class partb(Scene):
   def construct(self):
@@ -167,17 +166,18 @@ class partb(Scene):
     deriv = MathTex(r'\frac{d}{dt}').move_to(derivative_function.get_center() + LEFT * 1.8)
     combined = VGroup(deriv, derivative_function)
     self.play(Write(combined))
-    step = MathTex(r"6.687(e^{ln(0.931)})^t")
+    step = MathTex(r"\frac{d}{dt}\,6.687e^{ln(0.931^t)}")
     self.play(Transform(combined, step))
-    step = MathTex(r"6.687(e^{ln(0.931)t})^1")
+    step = MathTex(r"\frac{d}{dt}\,6.687(e^{ln(0.931)t})")
     self.play(Transform(combined, step))
     step = MathTex(r"6.687(e^{ln(0.931)t}) \cdot ln(0.931)")
     self.play(Transform(combined, step))
-
     self.play(combined.animate.shift(RIGHT * 1.3))
     function = MathTex(r"A'(t) =").move_to(combined.get_center() + LEFT * 3.9)
     self.play(Write(function, run_time=0.6))
     self.play(Transform(function, MathTex(r"A'(15) =").move_to(combined.get_center() + LEFT * 4.06)))
+    step = MathTex(r"6.687(e^{ln(0.931)15}) \cdot ln(0.931)").move_to(function.get_center() + RIGHT * 4.2)
+    self.play(Transform(combined,step))
     step = MathTex(r"6.687(e^{ln(0.931)15}) \cdot ln(0.931)").move_to(function.get_center() + RIGHT * 4.2)
     self.play(Transform(combined,step))
     step = MathTex(r"6.687(e^{(-0.0714)15}) \cdot (-0.0714)").move_to(function.get_center() + RIGHT * 4.36)
@@ -389,7 +389,7 @@ class partc(Scene):
     
     self.play(FadeOut(partcquestion, equalSign2, combined, answer_circle, answer, units))
     
-class partd(Scene):
+class partd1(Scene):
   def construct(self):
     partdquestion = Text("d) For t > 30, L(t), the linear approximation to A at t = 30, is a better model for the amount of grass clippings\n      remaining in the bin. Use L(t) to predict the time at which there will be 0.5 pound of grass clippings in the\n      bin. Show the work that leads to your answer.", line_spacing=1.1).shift(UP * 3 + LEFT * 0.07).scale(0.43)
     self.play(Write(partdquestion), run_time=7)
@@ -402,7 +402,7 @@ class partd(Scene):
     self.wait(1.8)
     self.play(Write(pointslope))
     self.wait()
-    self.play(Transform(pointslope, MathTex("y - A(30) = m(t - x_1)")))
+    self.play(Transform(pointslope, MathTex("y - A(30) = m(t - t_1)")))
     self.play(Transform(pointslope, MathTex("y - A(30) = m(t - 30)")))
     self.play(Transform(pointslope, MathTex("y - A(30) = A'(30)(t - 30)")))
     self.play(FadeOut(text))
